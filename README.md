@@ -103,3 +103,39 @@ clxiso 的 Scriptable 脚本集合。
 ### 来源
 
 脚本原作者署名为 **haoyu592**，本仓库版本加入了调价日期在线获取、北京时间显示修复和内嵌图标。Logo 原图来自 [haoyu592/DSbox](https://github.com/haoyu592/DSbox/blob/main/Old/Sinopec1.png)，脚本中保留了来源说明。
+
+## Codex 用量与订阅
+
+在 Codex / Claude 用量小组件中加入订阅日期与剩余天数显示。默认中号组件左侧显示 Codex 的 5 小时、周用量，右侧显示订阅日期；也支持小号组件、Claude 单服务、双服务及周用量图表。
+
+[下载 Codex用量与订阅.js](https://raw.githubusercontent.com/1clxiso/Scriptable-script/main/Codex%E7%94%A8%E9%87%8F%E4%B8%8E%E8%AE%A2%E9%98%85.js) · [查看源码](./Codex%E7%94%A8%E9%87%8F%E4%B8%8E%E8%AE%A2%E9%98%85.js) · [完整使用说明](./docs/Codex%E7%94%A8%E9%87%8F%E4%B8%8E%E8%AE%A2%E9%98%85-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
+
+### 安装与配置
+
+1. 下载脚本并导入 Scriptable，或新建脚本并粘贴完整代码。也可在本仓库的「脚本下载器」中选择「输入其他 raw 链接」，粘贴上面的下载地址。
+2. 在 Scriptable 内运行，选择「配置接口与订阅日期」，填写你自己的完整 HTTPS 用量接口。需要认证时填写 Bearer Token；地址、Token 和手动日期保存到本机 Keychain。
+3. 若接口没有订阅信息，可填写手动到期日期（`YYYY-MM-DD`）；留空表示未设置。手动日期按设备本地时区当天结束计算，并标注「手动」。
+4. 桌面添加 Scriptable 小号或中号组件并选择该脚本。参数留空默认显示 Codex；输入 `claude` 显示 Claude，`both` 显示双服务，`week` 显示 Codex 与周图表（后两种用于中号组件）。
+
+本脚本需要已有的用量接口，不提供采集后端。接口沿用原项目的 `services.codex` / `services.claude` 及额度字段；完整路径与查询参数会保留。默认请求刷新间隔 10 分钟，实际刷新由 iOS 调度。网络失败会尝试本地缓存并标注「缓存」。
+
+### 不知道接口有没有订阅日期？
+
+配置完成后，在 App 内再次运行脚本，选择 **检查接口字段**。脚本会给出中文结论：是否发现订阅到期时间、是否只有续费或账期信息，以及是否需要适配字段名。点击「复制检查结果」即可分享检查文字，无需查看或复制完整 JSON。
+
+检查结果仅列出已知订阅字段名和格式状态，不展示 Token、邮箱或字段具体值。接口认证失败时会提示核对配置。
+
+### 订阅日期规则
+
+- `subscription.expires_at`：显示「订阅到期」。
+- `subscription.renews_at`：显示「下次续费」。
+- `subscription.current_period_end`：结合 `cancel_at_period_end` 判断显示「订阅到期」「下次续费」或「周期结束」。
+- 接口没有有效订阅日期时，使用当前接口配置的手动日期；都没有则显示「未提供」。
+
+**原项目没有定义订阅到期字段，自动显示需要后端提供真实的订阅信息。** 用量重置时间、JWT 到期或 Token 到期不会被当作订阅到期时间。接口时间支持带时区的 ISO 8601 时间、Unix 秒或毫秒，按设备本地时区显示。日期已过时提示核对，不据此断定账号已失效。
+
+[示例接口响应](./examples/codex-subscription-usage.example.json)使用演示数据，不含真实账号信息。已完成语法和 22 项日期、字段检查、认证与缓存隔离及组件构建检查；真实接口与 iOS 排版仍需在设备上确认。仓库根目录运行 `node tests/codex-subscription.test.cjs` 可复现本地检查。
+
+### 项目来源
+
+基于 [MananaFX/Scritable-Codex-Usage](https://github.com/MananaFX/Scritable-Codex-Usage) 的界面与用量处理扩展，参考提交 `3eaf44939e7a4bf40ce9cd6bae4112a1c993d240`。新增本地配置、订阅日期、手动日期备用和接口字段检查，脚本顶部保留了原项目来源。
