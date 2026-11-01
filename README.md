@@ -2,6 +2,20 @@
 
 clxiso 的 Scriptable 脚本集合。
 
+## 脚本下载器
+
+[下载脚本下载器.js](https://raw.githubusercontent.com/1clxiso/Scriptable-script/main/%E8%84%9A%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%99%A8.js)
+
+首次需要手动安装下载器：打开上面的链接，复制代码，在 Scriptable 新建脚本并粘贴，命名为「脚本下载器」。也可以下载 `.js` 文件后导入。
+
+之后运行下载器即可：
+
+- 选择「安装 / 更新联通余量」，下载本仓库最新版。
+- 选择「输入其他 raw 链接」，粘贴 HTTPS GitHub raw `.js` 链接，再确认保存名称。
+- 已有同名脚本时会提示覆盖，并在本机 `Library/Scriptable下载器备份` 中保存上一版。更新代码不会清除 Keychain 中的 Cookie 和设置。
+
+脚本保存到下载器所在的 Scriptable 目录，支持本机和 iCloud。下载内容不会自动运行，下载器本身不提供定时自动更新。请在 Scriptable 内运行，不要设为桌面组件。
+
 ## 联通余量
 
 显示话费余额、剩余通用流量与语音余量。支持小号、中号桌面组件，自动适配浅色和深色外观。
