@@ -3,7 +3,7 @@
 // Loon：开启中国联通去广告自用版中的「获取余量组件 Cookie」，刷新联通首页，点击获取通知。
 // 凭据只存 Keychain；直接请求联通官方接口。单账号，重新导入会替换当前账号。
 // Cookie 失效后需重新捕获，不自动登录。系统决定实际组件刷新时间。
-const SCRIPT_VERSION = '202611011546';
+const SCRIPT_VERSION = '202611011600';
 const UPDATE_URL = 'https://raw.githubusercontent.com/1clxiso/Scriptable-script/main/%E8%81%94%E9%80%9A%E4%BD%99%E9%87%8F.js';
 const CREDENTIAL_KEY = 'clxiso.unicom.widget.credentials.v1';
 const SETTINGS_KEY = 'clxiso.unicom.widget.settings.v1';
@@ -118,10 +118,13 @@ function renderWidget(cache, state, settings, family) {
     widget.addSpacer(8);
     const details = widget.addStack(); details.layoutHorizontally();
     ['flow', 'voice'].forEach((type, index) => {
-      if (index) details.addSpacer(10);
-      const column = details.addStack(); column.layoutVertically(); column.size = new Size(58, 0);
+      // 流量获得更宽的区域，语音栏通过弹性间距靠向组件右侧。
+      if (index) details.addSpacer();
+      const column = details.addStack(); column.layoutVertically(); column.size = new Size(type === 'flow' ? 78 : 44, 0);
       addText(column, names[type], 9, muted); column.addSpacer(3);
-      metric(column, cache.rows.find(row => row.type === type), 15, ink);
+      // 流量以大字号显示；较长数字由 minimumScaleFactor 按可用宽度缩小。
+      const amount = metric(column, cache.rows.find(row => row.type === type), type === 'flow' ? 23 : 15, ink);
+      amount.size = new Size(type === 'flow' ? 78 : 44, 28);
     });
   } else {
     const metrics = widget.addStack(); metrics.layoutHorizontally(); metrics.centerAlignContent();
