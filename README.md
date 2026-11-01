@@ -51,6 +51,10 @@ clxiso 的 Scriptable 脚本集合。
 
 显示所选省份的 92#、95#、98# 汽油和 0# 柴油价格，以及下次调价时间和网站提供的涨跌预测。建议使用中号桌面组件，支持浅色与深色外观。
 
+![油价小组件浅色与深色预览](previews/油价小组件.png)
+
+> 图片依据脚本配色和布局绘制，价格、调价日期及预测均为示例数据，不是 iPhone 实机截图；实际显示以设备运行结果为准。
+
 ### 下载和安装
 
 [下载具体油价显示 3.js](https://raw.githubusercontent.com/1clxiso/Scriptable-script/main/%E5%85%B7%E4%BD%93%E6%B2%B9%E4%BB%B7%E6%98%BE%E7%A4%BA%203.js) · [查看源码](./%E5%85%B7%E4%BD%93%E6%B2%B9%E4%BB%B7%E6%98%BE%E7%A4%BA%203.js)
