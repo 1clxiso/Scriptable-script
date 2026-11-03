@@ -106,3 +106,30 @@ clxiso 的 Scriptable 脚本集合。
 
 脚本原作者署名为 **haoyu592**，本仓库版本加入了调价日期在线获取、北京时间显示修复和内嵌图标。Logo 原图来自 [haoyu592/DSbox](https://github.com/haoyu592/DSbox/blob/main/Old/Sinopec1.png)，脚本中保留了来源说明。
 
+## Codex 用量
+
+显示 Codex 的 5 小时窗口与周额度用量百分比、额度重置时间、最近 7 天每日 Token 柱状图，以及 Pro 计划附赠的重置卡剩余张数。改编自 [MananaFX/Scritable-Codex-Usage](https://github.com/MananaFX/Scritable-Codex-Usage)，本仓库版本加入了重置卡显示。
+
+### 下载和安装
+
+[下载 Codex-Usage.js](https://raw.githubusercontent.com/1clxiso/Scriptable-script/main/Codex-Usage.js)
+
+1. 此组件必须搭配自建用量接口使用，不接入任何公共服务。接口部署方法见 [MananaFX/Scritable-Codex-Usage](https://github.com/MananaFX/Scritable-Codex-Usage) 的说明，整体链路为：本地脚本定时请求 ChatGPT 用量接口并推送到 Cloudflare KV，Worker 从 KV 读取数据供小组件请求。
+2. 将脚本导入 Scriptable，或新建脚本并粘贴代码，名称保持为 **Codex-Usage**。
+3. 修改脚本顶部的 `DEFAULT_SERVER`，替换为自己的接口地址。
+4. 桌面添加 Scriptable 组件，编辑组件参数：
+   - `codex`（小号）：只显示 Codex 用量。
+   - `claude`（小号）：只显示 Claude 用量（需接口配置了 Claude 数据源）。
+   - `both`（中号）：左右分栏同时显示 Codex 与 Claude。
+   - `week`（中号）：左侧 Codex 用量，右侧最近 7 天每日 Token 柱状图。
+
+### 组件说明
+
+- 组件内缓存上次数据，接口不可用时显示缓存并标注离线状态。
+- 数据超过 10 分钟未更新时，组件会显示离线提示；本地推送脚本恢复运行后自动恢复。
+- Pro 计划没有 5 小时窗口时，对应一栏显示 `--%`，重置卡行显示 `Reset Cards ×N`。
+
+### 数据与隐私
+
+仓库中的脚本不含任何个人服务器地址、令牌或 Cookie，`DEFAULT_SERVER` 为占位地址，需替换为自己的接口。用量数据（百分比、重置时间、每日 Token 数）保存在自己的 Cloudflare KV 中，不经过第三方展示服务。请勿将包含个人接口地址的版本公开发布，也不要在 Issue 中上传包含账号信息的数据。
+
