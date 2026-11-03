@@ -108,7 +108,11 @@ clxiso 的 Scriptable 脚本集合。
 
 ## Codex 用量
 
-显示 Codex 的 5 小时窗口与周额度用量百分比、额度重置时间、最近 7 天每日 Token 柱状图，以及 Pro 计划附赠的重置卡剩余张数。改编自 [MananaFX/Scritable-Codex-Usage](https://github.com/MananaFX/Scritable-Codex-Usage)，本仓库版本加入了重置卡显示。
+显示 Codex 的 5 小时窗口与周额度用量百分比、额度重置时间、最近 7 天每日 Token 柱状图，以及 Pro 计划附赠的重置卡剩余张数。
+
+![Codex 用量小组件预览](previews/Codex用量.png)
+
+> 图片由脚本布局绘制，使用示例数据，仅用于说明设计，不是 iPhone 实机截图；左侧为中号组件（week 模式），右侧为小号组件。
 
 ### 下载和安装
 
@@ -132,4 +136,8 @@ clxiso 的 Scriptable 脚本集合。
 ### 数据与隐私
 
 仓库中的脚本不含任何个人服务器地址、令牌或 Cookie，`DEFAULT_SERVER` 为占位地址，需替换为自己的接口。用量数据（百分比、重置时间、每日 Token 数）保存在自己的 Cloudflare KV 中，不经过第三方展示服务。请勿将包含个人接口地址的版本公开发布，也不要在 Issue 中上传包含账号信息的数据。
+
+### 来源
+
+脚本改编自 [MananaFX/Scritable-Codex-Usage](https://github.com/MananaFX/Scritable-Codex-Usage)（作者 **MananaFX**），原项目提供 Scriptable 展示端代码与接口契约，本仓库版本加入了重置卡（Reset Cards）剩余张数显示，并默认适配自建 Cloudflare Worker + KV 数据链路。感谢原作者的设计，版权归原作者所有。
 
